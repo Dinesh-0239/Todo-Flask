@@ -17,9 +17,11 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+year = datetime.now().year
+
 @app.route('/')
 def home():
-    year = datetime.now().year
+    print(year)
     return render_template('home.html',year=year)
 
 @app.route('/add_todo', methods=['GET','POST'])
@@ -31,17 +33,17 @@ def add_todo():
         db.session.add(new_todo)
         db.session.commit()
         return redirect('/list_todos_pending')
-    return render_template('add_todo.html')
+    return render_template('add_todo.html', year=year)
 
 @app.route('/list_todos_pending')
 def list_todos_pending():
     todos = Todo.query.filter_by(status='pending').all()
-    return render_template('pending_todo.html', todos=todos)
+    return render_template('pending_todo.html', todos=todos, year=year)
 
 @app.route('/list_todos_completed')
 def list_todos_completed():
     todos = Todo.query.filter_by(status='completed').all()
-    return render_template('completed_todo.html', todos=todos)
+    return render_template('completed_todo.html', todos=todos, year=year)
 
 @app.route('/edit_todo/<int:todo_id>',methods=["GET","POST"])
 def edit_todo(todo_id):
@@ -51,7 +53,7 @@ def edit_todo(todo_id):
         todo.description = request.form['description']
         db.session.commit()
         return redirect('/list_todos_pending')
-    return render_template('edit_todo.html', todo=todo)
+    return render_template('edit_todo.html', todo=todo, year=year)
     
 @app.route('/complete_todo/<int:todo_id>',methods=["POST"])
 def complete_todo(todo_id):
