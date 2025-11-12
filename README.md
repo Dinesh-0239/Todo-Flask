@@ -7,11 +7,11 @@ Features:
 2. Adding Todo item in the list
 
 Home Page
-![alt text](image.png)
+![alt text](static/image.png)
 
 todo add and edit
-![alt text](image-1.png)
+![alt text](static/image-1.png)
 
 Pending and Completed todo
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](static/image-2.png)
+![alt text](static/image-3.png)
