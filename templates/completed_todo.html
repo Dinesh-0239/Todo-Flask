@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Pending Todo {% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  {% if todos|length == 0 %}
+    <div class="alert alert-info" role="alert">
+      No completed todo items found.
+    </div>
+  {% else %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Index</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date Created</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ todo.title }}</td>
+          <td>{{ todo.description }}</td>
+          <td>{{ todo.status }}</td>
+          <td>{{ todo.date_created.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            <!-- Delete button: form to delete (POST) -->
+            <form method="POST" action="{{ url_for('delete_todo', todo_id=todo.id) }}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this todo?');">
+              <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+</div>
+{% endblock %}

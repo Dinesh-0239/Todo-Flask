@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Todo {% endblock %}
+
+{% block content %} 
+<div class="container py-5">
+<form method="POST">
+  <div class="mb-3">
+    <label for="titleInput" class="form-label fs-4">Title</label>
+    <input type="text" class="form-control" id="titleInput" name="title" placeholder="Enter todo title" required>
+  </div>
+  <div class="mb-3">
+    <label for="descriptionInput" class="form-label fs-4">Description</label>
+    <textarea class="form-control" id="descriptionInput" name="description" rows="3" placeholder="Enter description" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

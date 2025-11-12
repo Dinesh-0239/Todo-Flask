@@ -15,10 +15,10 @@
     {# Navbar #}
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid d-flex align-items-center justify-content-start">
-        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='appicon.png') }}" href="/" alt="TODO" width="50" /></a>
-        <a class="nav-link ms-3 me-5 fs-2" href="#">ADD TODO</a>
-        <a class="nav-link me-5 fs-2" href="#">VIEW PENDING TODO</a>
-        <a class="nav-link fs-2" href="#">VIEW COMPLETED TODO</a>
+        <a class="navbar-brand" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='appicon.png') }}" alt="TODO" width="50" /></a>
+        <a class="nav-link ms-3 me-5 fs-2" href="{{ url_for('add_todo') }}">ADD TODO</a>
+        <a class="nav-link me-5 fs-2" href="{{ url_for('list_todos_pending') }}">VIEW PENDING TODO</a>
+        <a class="nav-link fs-2" href="{{ url_for('list_todos_completed') }}">VIEW COMPLETED TODO</a>
       </div>
     </nav>
     {% block content %}  {% endblock %}
